@@ -18,6 +18,20 @@
 
 workspace(name = "com_google_zetasql")
 
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "bazel_skylib",
+    sha256 = "c6966ec828da198c5d9adbaa94c05e3a1c7f21bd012a0b29ba8ddbccb2c93b0d",
+    urls = [
+        "https://github.com/bazelbuild/bazel-skylib/releases/download/1.1.1/bazel-skylib-1.1.1.tar.gz"
+    ],
+)
+
+load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
+
+bazel_skylib_workspace()
+
 # Bazel doesn't support recursively loading dependencies.
 # The recommended pattern is for a repo to provide a 'my_repo_deps()' method
 # which will download all dependencies. Thus, a _direct dependency of 'my_repo'
@@ -48,3 +62,5 @@ zetasql_deps_step_3()
 load("@com_google_zetasql//bazel:zetasql_deps_step_4.bzl", "zetasql_deps_step_4")
 
 zetasql_deps_step_4()
+
+

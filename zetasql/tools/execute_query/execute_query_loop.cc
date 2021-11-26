@@ -64,6 +64,7 @@ absl::Status ExecuteQueryLoop(
     }
 
     ZETASQL_RETURN_IF_ERROR(status_handler(status));
+    return absl::OkStatus();
   }
 }
 

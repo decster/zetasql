@@ -245,28 +245,27 @@ cc_proto_library(
             )
     if analyzer_deps:
         # required by protobuf_python
-        if not native.existing_rule("six_archive"):
-            http_archive(
-                name = "six_archive",
-                build_file = "@com_google_protobuf//:six.BUILD",
-                # Release 1.10.0
-                url = "https://pypi.python.org/packages/source/s/six/six-1.10.0.tar.gz",
-                sha256 = "105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a",
-            )
+        #if not native.existing_rule("six_archive"):
+        #    http_archive(
+        #        name = "six_archive",
+        #        build_file = "@com_google_protobuf//:six.BUILD",
+        #        # Release 1.10.0
+        #        url = "https://pypi.python.org/packages/source/s/six/six-1.10.0.tar.gz",
+        #        sha256 = "105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a",
+        #    )
 
-        native.bind(
-            name = "six",
-            actual = "@six_archive//:six",
-        )
+        #native.bind(
+        #    name = "six",
+        #    actual = "@six_archive//:six",
+        #)
 
         # Protobuf
         if not native.existing_rule("com_google_protobuf"):
             http_archive(
                 name = "com_google_protobuf",
-                urls = ["https://github.com/protocolbuffers/protobuf/archive/v3.6.1.3.tar.gz"],
-                sha256 = "73fdad358857e120fd0fa19e071a96e15c0f23bb25f85d3f7009abfd4f264a2a",
-                strip_prefix = "protobuf-3.6.1.3",
-                patches = ["@com_google_zetasql//bazel:protobuf-v3.6.1.3.patch"],
+                urls = ["https://github.com/protocolbuffers/protobuf/archive/refs/tags/v3.19.1.tar.gz"],
+                sha256 = "87407cd28e7a9c95d9f61a098a53cf031109d451a7763e7dd1253abf8b4df422",
+                strip_prefix = "protobuf-3.19.1",
             )
 
     # Required by gRPC
